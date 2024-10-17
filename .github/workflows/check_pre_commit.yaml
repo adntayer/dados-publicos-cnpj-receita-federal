@@ -1,0 +1,27 @@
+name: Check pre-commit
+
+on:
+  workflow_dispatch: null
+  schedule:
+    # (UTC TIME) -- At 08:30 on Sunday.
+    - cron: '30 8 * * 0'
+
+jobs:
+
+  check_pre_commit:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: clone repo
+        uses: actions/checkout@v2
+
+      - name: setup python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.9' 
+
+      - name: install requirements
+        run: pip install pre-commit
+      
+      - name: run pre-commit
+        run: pre-commit run --all-files

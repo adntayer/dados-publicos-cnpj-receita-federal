@@ -1,0 +1,14 @@
+[run]
+omit =
+    *tests*
+    *\__init__.py
+    *fixtures.py
+    *.db
+    *.sqlite3
+    *exemplos/*
+
+[report]
+exclude_lines =
+    if __name__ == '__main__':
+    pragma: no cover
+    @abstract

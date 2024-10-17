@@ -1,3 +1,4 @@
+# source: https://github.com/github/gitignore/blob/master/Python.gitignore
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
@@ -25,6 +26,8 @@ share/python-wheels/
 .installed.cfg
 *.egg
 MANIFEST
+.idea/
+.vscode/
 
 # PyInstaller
 #  Usually these files are written by a python script from a template
@@ -60,6 +63,7 @@ cover/
 local_settings.py
 db.sqlite3
 db.sqlite3-journal
+*.sqlite3
 
 # Flask stuff:
 instance/
@@ -94,24 +98,7 @@ ipython_config.py
 #   install all needed dependencies.
 #Pipfile.lock
 
-# poetry
-#   Similar to Pipfile.lock, it is generally recommended to include poetry.lock in version control.
-#   This is especially recommended for binary packages to ensure reproducibility, and is more
-#   commonly ignored for libraries.
-#   https://python-poetry.org/docs/basic-usage/#commit-your-poetrylock-file-to-version-control
-#poetry.lock
-
-# pdm
-#   Similar to Pipfile.lock, it is generally recommended to include pdm.lock in version control.
-#pdm.lock
-#   pdm stores project-wide configurations in .pdm.toml, but it is recommended to not include it
-#   in version control.
-#   https://pdm.fming.dev/latest/usage/project/#working-with-version-control
-.pdm.toml
-.pdm-python
-.pdm-build/
-
-# PEP 582; used by e.g. github.com/David-OConnor/pyflow and github.com/pdm-project/pdm
+# PEP 582; used by e.g. github.com/David-OConnor/pyflow
 __pypackages__/
 
 # Celery stuff
@@ -154,9 +141,37 @@ dmypy.json
 # Cython debug symbols
 cython_debug/
 
-# PyCharm
-#  JetBrains specific template is maintained in a separate JetBrains.gitignore that can
-#  be found at https://github.com/github/gitignore/blob/main/Global/JetBrains.gitignore
-#  and can be added to the global gitignore or merged into this file.  For a more nuclear
-#  option (not recommended) you can uncomment the following to ignore the entire idea folder.
-#.idea/
+# Extras
+*.db
+*.idea
+*.ipynb
+*.pdf
+
+#Ignore all xlsx files
+*.xlsx
+
+.ruff_cache/
+notebooks/
+.ipynb
+.ipython_config
+
+*.png
+*.jpeg
+
+.txt
+
+*.csv
+
+*.html
+
+
+### CUSTOM
+.task
+*.db.wal
+dados_publicos_cnpj_receita_federal/data/**
+.task/*
+!assets/images/* 
+logs/
+*.duckdb
+*.duckdb.wal
+*.data_dados_publicos_cnpj_receita_federal/

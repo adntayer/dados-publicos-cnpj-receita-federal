@@ -1,0 +1,1 @@
+from dados_publicos_cnpj_receita_federal.logger import SetupLogger

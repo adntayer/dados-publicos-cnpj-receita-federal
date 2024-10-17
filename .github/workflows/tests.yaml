@@ -1,0 +1,64 @@
+# .github/workflows/build.yml
+name: Tests
+
+on:
+  workflow_dispatch: null
+  schedule:
+    - cron: "15 9 * * 1"
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  tests:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: clone repo
+        uses: actions/checkout@v2
+
+      - name: setup python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.9' 
+
+      - name: get current date
+        id: date
+        run: echo "::set-output name=date::$(date +'%Y-%m-%d')"
+
+      - name: caching requirements.txt
+        uses: actions/cache@v3
+        id: cache-req-requirements
+        with:
+          path: ${{ env.pythonLocation }}
+          key: ${{ env.pythonLocation }}-${{ hashFiles('requirements.txt') }}
+
+      - name: install requirements
+        if: steps.cache-req-requirements.outputs.cache-hit != 'true'
+        run: |
+          pip install -r requirements.txt
+          pip install -r dev.txt
+
+      - name: run pytest
+        run: python -m pytest
+
+  precommit:
+    runs-on: ubuntu-latest
+      
+    steps:
+      - name: clone repo
+        uses: actions/checkout@v2
+
+      - name: setup python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.9' 
+
+      - name: install requirements
+        run: pip install pre-commit
+      
+      - name: run pre-commit
+        run: |
+          git fetch origin
+          pre-commit run --all-files
+          
