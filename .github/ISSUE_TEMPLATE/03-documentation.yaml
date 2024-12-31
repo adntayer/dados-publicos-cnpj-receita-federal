@@ -1,0 +1,66 @@
+name: 📚 Documentação
+description: Solicite uma nova documentação ou atualize a existente
+title: "[DOCUMENTAÇÃO] <título>"
+labels: ["documentation"]
+body:
+
+  - type: markdown
+    attributes:
+      value: |
+        Por favor, preencha as seções abaixo para ajudar a entender sua solicitação de documentação.
+  
+  - type: textarea
+    id: descricao_documentacao
+    attributes:
+      label: Descrição da Documentação
+      placeholder: "Exemplo: Instruções para configurar o ambiente de desenvolvimento"
+    validations:
+      required: true
+  
+  - type: textarea
+    id: secoes
+    attributes:
+      label: Seções Necessárias
+      placeholder: Descreva quais seções devem ser incluídas na documentação
+    validations:
+      required: true
+  
+  - type: textarea
+    id: motivacao
+    attributes:
+      label: Motivação
+      placeholder: Por que essa documentação é necessária?
+    validations:
+      required: true
+  
+  - type: textarea
+    id: impacto_esperado
+    attributes:
+      label: Impacto Esperado
+      placeholder: Descreva como essa documentação beneficiará os usuários ou o projeto.
+    validations:
+      required: true
+  
+  - type: textarea
+    id: referencias
+    attributes:
+      label: Referências
+      placeholder: Você tem alguma referência ou material que gostaria de incluir?
+  
+  - type: textarea
+    id: informacoes_adicionais
+    attributes:
+      label: Informações Adicionais
+      placeholder: Adicione qualquer informação que considere relevante.
+  
+  - type: checkboxes
+    id: posso_ajudar
+    attributes:
+      label: Você pode ajudar?
+      options:
+        - label: Posso ajudar a criar ou revisar essa documentação!
+  
+  - type: markdown
+    attributes:
+      value: |
+        Obrigado por compartilhar sua solicitação de documentação!

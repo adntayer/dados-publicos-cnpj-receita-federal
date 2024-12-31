@@ -1,0 +1,102 @@
+default_language_version:
+    python: python3.9
+exclude: |
+    (?x)(
+          ^.env|
+          ^charts/|
+          ^.k8s/|
+          ^.github/|
+          ^submodule/|
+          ^submodules/|
+          ^.bzr|
+          ^.direnv|
+          ^.eggs|
+          ^.git|
+          ^.hg|
+          ^.mypy_cache|
+          ^.nox|
+          ^.pants.d|
+          ^.db|
+          ^.ruff_cache|
+          ^.svn|
+          ^.tox|
+          ^.venv/|
+          ^__pypackages__/|
+          ^_build/|
+          ^build/|
+          ^dist/|
+          ^node_modules/|
+          ^venv/|
+          ^.ipynb_checkpoints/|
+          ^.ipynb|
+          ^dados_publicos_cnpj_receita_federal/__init__.py|
+          ^dados_publicos_cnpj_receita_federal/io/__init__.py|
+          ^dados_publicos_cnpj_receita_federal/engine/__init__.py
+      )
+
+repos:
+- repo: https://github.com/pre-commit/pre-commit-hooks
+  rev: v4.4.0
+  hooks:
+  - id: check-ast
+  # - id: check-added-large-files
+  - id: check-json
+  - id: check-yaml
+  - id: check-case-conflict
+  - id: check-toml
+  - id: check-xml
+  - id: end-of-file-fixer
+  - id: detect-aws-credentials
+    args: ["--allow-missing-credentials"]
+  - id: detect-private-key
+  - id: debug-statements
+  - id: double-quote-string-fixer
+  - id: name-tests-test
+    args: ["--pytest-test-first"]
+  - id: pretty-format-json
+    args: ["--autofix"]
+  - id: trailing-whitespace
+
+
+# Find and replace unneeded f-strings in your code.
+- repo: https://github.com/dannysepler/rm_unneeded_f_str
+  rev: v0.2.0
+  hooks:
+  - id: rm-unneeded-f-str
+
+# a formatter for finding and removing unused import statements
+- repo: https://github.com/hadialqattan/pycln
+  rev: v2.1.5
+  hooks:
+  - id: pycln
+    args: ["--all"]
+
+- repo: https://github.com/asottile/add-trailing-comma
+  rev: v2.5.1
+  hooks:
+  - id: add-trailing-comma
+
+- repo: https://github.com/asottile/reorder_python_imports
+  rev: v3.10.0
+  hooks:
+  -   id: reorder-python-imports
+
+- repo: https://github.com/asottile/pyupgrade
+  rev: v3.7.0
+  hooks:
+  -   id: pyupgrade
+
+- repo: https://github.com/psf/black
+  rev: 23.3.0
+  hooks:
+    - id: black
+      args: ["--line-length=800", "--skip-string-normalization"]
+
+# An extremely fast Python linter, written in Rust.
+- repo: https://github.com/charliermarsh/ruff-pre-commit
+  # Ruff version.
+  rev: v0.0.272
+  hooks:
+    - id: ruff
+      # Respect `exclude` and `extend-exclude` settings.
+      args: ["--line-length=900", "--fix", ]

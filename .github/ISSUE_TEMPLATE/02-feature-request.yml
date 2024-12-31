@@ -1,0 +1,66 @@
+name: 🚀 Feature Request
+description: Solicite uma nova funcionalidade
+title: "[FEATURE REQUEST] <título>"
+labels: ["feature request"]
+body:
+
+  - type: markdown
+    attributes:
+      value: |
+        Por favor, preencha as seções abaixo para ajudar a entender sua solicitação de funcionalidade.
+  
+  - type: textarea
+    id: descricao_funcionalidade
+    attributes:
+      label: Descrição da Funcionalidade
+      placeholder: "Exemplo: Adicionar a extração de dados para outro formato para além de parquet"
+    validations:
+      required: true
+  
+  - type: textarea
+    id: feature
+    attributes:
+      label: Feature
+      placeholder: Descreva a feature em poucas palavras
+    validations:
+      required: true
+  
+  - type: textarea
+    id: motivacao
+    attributes:
+      label: Motivação
+      placeholder: Por que essa funcionalidade é necessária?
+    validations:
+      required: true
+  
+  - type: textarea
+    id: impacto_esperado
+    attributes:
+      label: Impacto Esperado
+      placeholder: Descreva como essa funcionalidade beneficiará os usuários ou o projeto.
+    validations:
+      required: true
+  
+  - type: textarea
+    id: alternativas
+    attributes:
+      label: Alternativas Consideradas
+      placeholder: Você considerou alguma alternativa para essa funcionalidade?
+  
+  - type: textarea
+    id: informacoes_adicionais
+    attributes:
+      label: Informações Adicionais
+      placeholder: Adicione qualquer informação que considere relevante.
+  
+  - type: checkboxes
+    id: posso_ajudar
+    attributes:
+      label: Você pode ajudar?
+      options:
+        - label: Posso ajudar a implementar essa feature!
+  
+  - type: markdown
+    attributes:
+      value: |
+        Obrigado por compartilhar sua ideia!

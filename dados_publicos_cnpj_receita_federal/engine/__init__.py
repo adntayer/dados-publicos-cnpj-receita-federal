@@ -1,0 +1,5 @@
+from dados_publicos_cnpj_receita_federal.engine.empresas import processar_empresas
+from dados_publicos_cnpj_receita_federal.engine.estabelecimentos import processar_estabelecimentos
+from dados_publicos_cnpj_receita_federal.engine.regime_tributario import processar_regime_tributario
+from dados_publicos_cnpj_receita_federal.engine.simples import processar_simples
+from dados_publicos_cnpj_receita_federal.engine.socios import processar_socios

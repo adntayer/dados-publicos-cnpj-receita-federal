@@ -1,0 +1,57 @@
+version: '3'
+
+vars:
+  VENV_FOLDER_NAME: venv
+
+tasks:
+
+  default:
+    desc: "Default task to list"
+    cmds:
+      - task --list-all
+
+  w-setup-venv:
+    platforms:
+      - windows
+    desc: setup venv (on windows plataform)
+    cmds:
+      - "python -m venv {{.VENV_FOLDER_NAME}}"
+      - echo "Slepping 5"
+      - timeout 5
+      - "{{.VENV_FOLDER_NAME}}\\\\Scripts\\\\pip install -e .[dev]"
+    sources:
+      - requirements.txt
+  l-setup-venv:
+    platforms:
+      - linux
+    desc: setup venv (on linux plataform)
+    cmds:
+      - echo "Not implemented"
+    sources:
+      - requirements.txt
+
+  w-run-tests:
+    platforms:
+      - windows
+    desc: run tests all tests with pytest (on windows plataform)
+    cmds:
+      - "{{.VENV_FOLDER_NAME}}\\\\Scripts\\\\python -m pytest"
+  l-run-tests:
+    platforms:
+      - linux
+    desc: run tests all tests with pytest (on windows plataform)
+    cmds:
+      - echo "Not implemented"
+
+  w-pc:
+    platforms:
+      - windows
+    desc: runs pre-commit (on windows plataform)
+    cmds:
+      - '{{.VENV_FOLDER_NAME}}\\\\Scripts\\\\pre-commit run --all-files'
+  l-pc:
+    platforms:
+      - linux
+    desc: runs pre-commit (on windows plataform)
+    cmds:
+      - echo "Not implemented"
