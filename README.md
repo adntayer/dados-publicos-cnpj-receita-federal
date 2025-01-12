@@ -24,7 +24,7 @@ A periodicidade de atualização dos dados é mensal.
 ## Como Executar o Projeto
 
 ```bash
-pip install git+https://github.com/adntayer/dados-publicos-cnpj-receita-federal.git@lastest
+pip install git+https://github.com/adntayer/dados-publicos-cnpj-receita-federal.git
 ```
 
 ou

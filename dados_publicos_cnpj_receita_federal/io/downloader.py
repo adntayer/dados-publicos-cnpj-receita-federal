@@ -1,11 +1,11 @@
 import os
 from datetime import datetime
 
-import requests
 from bs4 import BeautifulSoup
 from tqdm import tqdm
 
 from dados_publicos_cnpj_receita_federal import SetupLogger
+from dados_publicos_cnpj_receita_federal.io.requests_config import create_custom_session
 from dados_publicos_cnpj_receita_federal.settings import FOLDER_ZIP
 from dados_publicos_cnpj_receita_federal.settings import PATH_FOLDER_RAW
 
@@ -47,13 +47,14 @@ def download_safra(safra):
     os.makedirs(PATH_FOLDER_RAW_SAFRA_ZIP, exist_ok=True)
 
     _log.info(f"download | '{safra=}' | Obtendo links para a safra {safra}")
-    response = requests.get(url_safra)
+    session = create_custom_session()
+    response = session.get(url_safra)
     soup = BeautifulSoup(response.text, 'html.parser')
     links = soup.find_all('a')
     list_links_core = sorted([f"{url_safra}/{link.get('href')}" for link in links if link.get('href').endswith('.zip')])
 
     url_tax_regime = 'https://arquivos.receitafederal.gov.br/cnpj/regime_tributario'
-    response_tax_regime = requests.get(url_tax_regime)
+    response_tax_regime = session.get(url_tax_regime)
     soup_tax_regime = BeautifulSoup(response_tax_regime.text, 'html.parser')
     links_tax_regime = soup_tax_regime.find_all('a')
     list_links_tax_regime = sorted([f"{url_tax_regime}/{link.get('href')}" for link in links_tax_regime if link.get('href').endswith('.zip')])
@@ -103,7 +104,8 @@ def need_download(url, path):
     precisa_download('https://.../arquivo.zip', '/caminho/local')
     """
     filename = os.path.split(url)[1]
-    response = requests.head(url)
+    session = create_custom_session()
+    response = session.head(url)
     headers = response.headers
     content_length = int(headers.get('Content-Length'))
     local_file_path = os.path.join(path, filename)
@@ -147,8 +149,8 @@ def download_file(url, path):
     """
     filename = os.path.split(url)[1]
     local_file_path = os.path.join(path, filename)
-
-    response = requests.get(url, stream=True, timeout=40)
+    session = create_custom_session()
+    response = session.get(url, stream=True, timeout=40)
     response.raise_for_status()
 
     with open(local_file_path, 'wb') as f:
