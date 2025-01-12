@@ -1,7 +1,7 @@
-import requests
 from bs4 import BeautifulSoup
 
 from dados_publicos_cnpj_receita_federal import SetupLogger
+from dados_publicos_cnpj_receita_federal.io.requests_config import create_custom_session
 
 _log = SetupLogger('io.safra_atual')
 
@@ -15,7 +15,8 @@ def safra_atual():
 def list_safras():
     url = 'https://arquivos.receitafederal.gov.br/cnpj/dados_abertos_cnpj/'
 
-    response = requests.get(url)
+    session = create_custom_session()
+    response = session.get(url)
     list_safras = []
 
     if response.status_code == 200:
